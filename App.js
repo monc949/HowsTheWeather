@@ -20,7 +20,7 @@ export default function App() {
       const location = await Location.getCurrentPositionAsync();
 
       const { latitude, longitude } = location.coords;
-      alert("Latitude : $(latitude), Longitude: $(longitude)");
+      alert("Latitude : " + latitude + "\n" + "Longitude : " + longitude);
     } catch (error) {}
   }
   return (
