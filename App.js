@@ -53,8 +53,8 @@ export default function App() {
     );
   } else {
     return (
-      <View style={styles.container}>
-        <Text>Thing is fucked</Text>
+      <View style={styles.weatherInfo}>
+        <Text>Checking outside, 1 sec</Text>
         <StatusBar style="auto" />
       </View>
     );
@@ -69,5 +69,10 @@ const styles = StyleSheet.create({
   main: {
     justifyContent: "center",
     flex: 1,
+  },
+  weatherInfo: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
