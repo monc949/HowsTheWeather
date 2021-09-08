@@ -52,10 +52,10 @@ export default function App() {
     return (
       <View style={styles.container}>
         <View style={styles.main}>
-          <ReloadIcon load={load} />
+          {/* <ReloadIcon load={load} /> */}
           <WeatherInfo currentWeather={currentWeather} />
         </View>
-        <WeatherDetails />
+        <WeatherDetails currentWeather={currentWeather} />
       </View>
     );
   } else if (errorMessage) {
