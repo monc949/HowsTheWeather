@@ -13,7 +13,6 @@ const BASE_WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather?";
 export default function App() {
   const [errorMessage, setErrorMessage] = useState(null);
   const [currentWeather, setCurrentWeather] = useState(null);
-  const [unitSystem, setUnitSystem] = useState("metric");
 
   useEffect(() => {
     load();
@@ -31,7 +30,7 @@ export default function App() {
       const location = await Location.getCurrentPositionAsync();
 
       const { latitude, longitude } = location.coords;
-      const weatherUrl = `${BASE_WEATHER_URL}lat=${latitude}&lon=${longitude}&units=${unitSystem}&appid=${WEATHER_API_KEY}`;
+      const weatherUrl = `${BASE_WEATHER_URL}lat=${latitude}&lon=${longitude}&units=metric&appid=${WEATHER_API_KEY}`;
 
       const response = await fetch(weatherUrl);
       const result = await response.json();
@@ -68,7 +67,8 @@ export default function App() {
   } else {
     return (
       <View style={styles.container}>
-        <ActivityIndicator size="large" color={colors.PRIMARY_COLOR} />
+        <Text style={styles.loadingText}>Loading...</Text>
+        <ActivityIndicator size="large" color={colors.SECONDARY_COLOR} />
         <StatusBar style="auto" />
       </View>
     );
@@ -83,5 +83,12 @@ const styles = StyleSheet.create({
   main: {
     justifyContent: "center",
     flex: 1,
+  },
+  loadingText: {
+    textAlign: "center",
+    padding: 30,
+    fontSize: 18,
+    justifyContent: "center",
+    color: colors.SECONDARY_COLOR,
   },
 });

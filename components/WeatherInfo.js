@@ -13,11 +13,8 @@ export default function WeatherInfo({ currentWeather }) {
   const { icon, main, description } = details;
   const iconUrl = `https://openweathermap.org/img/wn/${icon}@4x.png`;
 
-  const low = temp_min;
-  const high = temp_max;
-
-  const lowTruncated = low.toFixed();
-  const highTruncated = high.toFixed();
+  var low = temp_min;
+  var high = temp_max;
 
   return (
     <View style={styles.weatherInfo}>
@@ -25,7 +22,7 @@ export default function WeatherInfo({ currentWeather }) {
       <Image style={styles.weatherIcon} source={{ uri: iconUrl }} />
       <Text style={styles.textPrimary}>{temp}°C</Text>
       <Text>
-        H:{highTruncated} L:{lowTruncated}
+        H:{high} L:{low}
       </Text>
       <Text style={styles.textSecondary}>{main}</Text>
       <Text style={styles.weatherDescription}>{description}</Text>
