@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { colors } from "../utils/index";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-const { PRIMARY_COLOR, SECONDARY_COLOR, BORDER_COLOR } = colors;
+const { PRIMARY_COLOR, SECONDARY_COLOR } = colors;
 
 export default function WeatherDetails({ currentWeather }) {
   const {
@@ -50,7 +50,7 @@ export default function WeatherDetails({ currentWeather }) {
           style={{
             ...styles.weatherDetailsBox,
             borderRightWidth: 1,
-            borderRightColor: BORDER_COLOR,
+            borderRightColor: PRIMARY_COLOR,
           }}
         >
           <View style={styles.weatherDetailsRow}>
@@ -60,7 +60,7 @@ export default function WeatherDetails({ currentWeather }) {
               color={SECONDARY_COLOR}
             />
             <View style={styles.weatherDetailsItems}>
-              <Text>Real Feel </Text>
+              <Text style={styles.lightText}>Real Feel</Text>
               <Text style={styles.textPrimary}>{feels_like} °C</Text>
             </View>
           </View>
@@ -73,7 +73,7 @@ export default function WeatherDetails({ currentWeather }) {
               color={SECONDARY_COLOR}
             />
             <View style={styles.weatherDetailsItems}>
-              <Text>Humidity </Text>
+              <Text style={styles.lightText}>Humidity</Text>
               <Text style={styles.textPrimary}>{humidity} %</Text>
             </View>
           </View>
@@ -84,7 +84,7 @@ export default function WeatherDetails({ currentWeather }) {
           style={{
             ...styles.weatherDetailsBox,
             borderRightWidth: 1,
-            borderRightColor: BORDER_COLOR,
+            borderRightColor: PRIMARY_COLOR,
           }}
         >
           <View style={styles.weatherDetailsRow}>
@@ -94,7 +94,7 @@ export default function WeatherDetails({ currentWeather }) {
               color={SECONDARY_COLOR}
             />
             <View style={styles.weatherDetailsItems}>
-              <Text>Wind Speed </Text>
+              <Text style={styles.lightText}>Wind Speed</Text>
               <Text style={styles.textPrimary}>{speedConverted} km/h</Text>
             </View>
           </View>
@@ -107,7 +107,7 @@ export default function WeatherDetails({ currentWeather }) {
               color={SECONDARY_COLOR}
             />
             <View style={styles.weatherDetailsItems}>
-              <Text>Wind Direction</Text>
+              <Text style={styles.lightText}>Wind Direction</Text>
               <Text style={styles.textPrimary}>
                 {wind_direction} | {deg} °
               </Text>
@@ -120,12 +120,15 @@ export default function WeatherDetails({ currentWeather }) {
 }
 
 const styles = StyleSheet.create({
+  lightText: {
+    color: colors.PRIMARY_COLOR,
+  },
   weatherDetails: {
     marginTop: "auto",
     margin: 15,
     borderWidth: 1,
-    borderColor: BORDER_COLOR,
-    borderRadius: 10,
+    borderColor: PRIMARY_COLOR,
+    borderRadius: 20,
   },
   weatherDetailsRow: {
     flexDirection: "row",

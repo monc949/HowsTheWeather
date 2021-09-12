@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { colors } from "../utils/index";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const { PRIMARY_COLOR, SECONDARY_COLOR } = colors;
 
@@ -16,16 +17,26 @@ export default function WeatherInfo({ currentWeather }) {
   let low = Math.round(temp_min);
   let high = Math.round(temp_max);
 
+  const locationIcon = (
+    <MaterialCommunityIcons
+      name="map-marker-outline"
+      size={25}
+      color={PRIMARY_COLOR}
+    />
+  );
+
   return (
     <View style={styles.weatherInfo}>
-      <Text style={styles.location}>{name}</Text>
+      <Text style={styles.location}>
+        {locationIcon} {name}
+      </Text>
 
       <Image style={styles.weatherIcon} source={{ uri: iconUrl }} />
 
       <Text style={styles.textPrimary}>{temp}°C</Text>
 
-      <Text>
-        H:{high} L:{low}
+      <Text style={styles.lightText}>
+        {high} ° / {low} °
       </Text>
 
       <Text style={styles.textSecondary}>{main}</Text>
@@ -36,18 +47,23 @@ export default function WeatherInfo({ currentWeather }) {
 }
 
 const styles = StyleSheet.create({
+  lightText: {
+    color: PRIMARY_COLOR,
+  },
   weatherInfo: {
     alignItems: "center",
   },
   weatherIcon: {
-    width: 100,
-    height: 100,
+    width: 200,
+    height: 120,
   },
   weatherDescription: {
     textTransform: "capitalize",
+    color: colors.PRIMARY_COLOR,
   },
   textPrimary: {
     fontSize: 40,
+    fontWeight: "bold",
     color: PRIMARY_COLOR,
   },
   textSecondary: {
@@ -57,8 +73,14 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   location: {
-    fontSize: 40,
-    paddingBottom: 50,
-    color: SECONDARY_COLOR,
+    borderWidth: 1,
+    borderRadius: 10,
+    backgroundColor: colors.GLASS,
+    borderColor: colors.GLASS,
+    padding: 8,
+    alignContent: "center",
+    fontSize: 20,
+    fontWeight: "bold",
+    color: PRIMARY_COLOR,
   },
 });
