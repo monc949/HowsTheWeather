@@ -13,18 +13,23 @@ export default function WeatherInfo({ currentWeather }) {
   const { icon, main, description } = details;
   const iconUrl = `https://openweathermap.org/img/wn/${icon}@4x.png`;
 
-  var low = temp_min;
-  var high = temp_max;
+  let low = Math.round(temp_min);
+  let high = Math.round(temp_max);
 
   return (
     <View style={styles.weatherInfo}>
       <Text style={styles.location}>{name}</Text>
+
       <Image style={styles.weatherIcon} source={{ uri: iconUrl }} />
+
       <Text style={styles.textPrimary}>{temp}°C</Text>
+
       <Text>
         H:{high} L:{low}
       </Text>
+
       <Text style={styles.textSecondary}>{main}</Text>
+
       <Text style={styles.weatherDescription}>{description}</Text>
     </View>
   );

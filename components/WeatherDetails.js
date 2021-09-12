@@ -19,6 +19,7 @@ export default function WeatherDetails({ currentWeather }) {
 
   const wind_direction = degToCompass(deg);
 
+  // Degree to direction function
   function degToCompass(num) {
     var val = Math.floor(num / 22.5 + 0.5);
     var arr = [
@@ -41,7 +42,7 @@ export default function WeatherDetails({ currentWeather }) {
     ];
     return arr[val % 16];
   }
-
+  // Main Component
   return (
     <View style={styles.weatherDetails}>
       <View style={styles.weatherDetailsRow}>
@@ -102,7 +103,7 @@ export default function WeatherDetails({ currentWeather }) {
           <View style={styles.weatherDetailsRow}>
             <MaterialCommunityIcons
               name="compass"
-              size={35}
+              size={30}
               color={SECONDARY_COLOR}
             />
             <View style={styles.weatherDetailsItems}>
