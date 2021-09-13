@@ -65,7 +65,7 @@ export default function App() {
   } else {
     return (
       <View style={styles.container}>
-        <Text style={styles.loadingText}>Loading...</Text>
+        <Text style={styles.loadingText}>Getting accurate location...</Text>
         <ActivityIndicator size="large" color={colors.SECONDARY_COLOR} />
         <StatusBar style="auto" />
       </View>

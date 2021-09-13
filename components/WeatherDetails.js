@@ -119,56 +119,56 @@ export default function WeatherDetails({ weatherData }) {
     if (phaseNum == 0 || phaseNum == 1) {
         phaseIcon = <MaterialCommunityIcons
           name="moon-new"
-          size={35}
+          size={30}
           color={SECONDARY_COLOR}
         />
     }
     if (phaseNum > 0 && phaseNum < 0.25) {
         phaseIcon = <MaterialCommunityIcons
           name="moon-waxing-crescent"
-          size={35}
+          size={30}
           color={SECONDARY_COLOR}
         />
     } 
     if (phaseNum == 0.25) {
         phaseIcon = <MaterialCommunityIcons
           name="moon-first-quarter"
-          size={35}
+          size={30}
           color={SECONDARY_COLOR}
         />
     }
     if (phaseNum > 0.25 && phaseNum < 0.50) {
       phaseIcon = <MaterialCommunityIcons
         name="moon-waxing-gibbous"
-        size={35}
+        size={30}
         color={SECONDARY_COLOR}
       />
     } 
     if (phaseNum == 0.50) {
       phaseIcon = <MaterialCommunityIcons
         name="moon-full"
-        size={35}
+        size={30}
         color={SECONDARY_COLOR}
       />
     }
     if (phaseNum > 0.50 && phaseNum < 0.75) {
       phaseIcon = <MaterialCommunityIcons
         name="moon-waning-gibbous"
-        size={35}
+        size={30}
         color={SECONDARY_COLOR}
       />
     }
     if (phaseNum == 0.75) {
       phaseIcon = <MaterialCommunityIcons
         name="moon-last-quarter"
-        size={35}
+        size={30}
         color={SECONDARY_COLOR}
       />
     }
     if (phaseNum > 0.75 && phaseNum < 1) {
       phaseIcon = <MaterialCommunityIcons
         name="moon-waning-gibbous"
-        size={35}
+        size={30}
         color={SECONDARY_COLOR}
       />
     }

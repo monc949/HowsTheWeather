@@ -21,20 +21,9 @@ export default function WeatherInfo({ weatherData }) {
   let low = Math.round(min);
   let high = Math.round(max);
 
-  // const locationIcon = (
-  //   <MaterialCommunityIcons
-  //     name="map-marker-outline"
-  //     size={25}
-  //     color={PRIMARY_COLOR}
-  //   />
-  // );
 
   return (
     <View style={styles.weatherInfo}>
-      {/* <Text style={styles.location}>
-        {locationIcon} {name}
-      </Text> */}
-
       <Image style={styles.weatherIcon} source={{ uri: iconUrl }} />
 
       <Text style={styles.textPrimary}>{temp}°C</Text>
@@ -60,7 +49,7 @@ const styles = StyleSheet.create({
   weatherIcon: {
     width: 200,
     height: 120,
-    padding: 90,
+    padding: 70,
   },
   weatherDescription: {
     textTransform: "capitalize",
