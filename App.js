@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     // backgroundColor: "#89cff0",
-    backgroundColor: "#202A44",
+    backgroundColor: colors.BACKGROUND_COLOR,
   },
   main: {
     justifyContent: "center",

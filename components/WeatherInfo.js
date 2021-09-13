@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
   weatherIcon: {
     width: 200,
     height: 120,
+    padding: 90,
   },
   weatherDescription: {
     textTransform: "capitalize",
