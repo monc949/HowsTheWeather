@@ -9,6 +9,8 @@ import { colors } from "./utils/index";
 
 const WEATHER_API_KEY = "ed1f0a4494214da7420897696de55b30";
 const BASE_WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather?";
+const FORECAST_WEATHER_URL =
+  "https://api.openweathermap.org/data/2.5/forecast/daily?";
 
 export default function App() {
   const [errorMessage, setErrorMessage] = useState(null);
@@ -31,6 +33,7 @@ export default function App() {
 
       const { latitude, longitude } = location.coords;
       const weatherUrl = `${BASE_WEATHER_URL}lat=${latitude}&lon=${longitude}&units=metric&appid=${WEATHER_API_KEY}`;
+      const forecastUrl = `${FORECAST_WEATHER_URL}lat=${latitude}&lon=${longitude}&cnt=1&appid=${WEATHER_API_KEY}`;
 
       const response = await fetch(weatherUrl);
       const result = await response.json();
@@ -45,9 +48,6 @@ export default function App() {
     }
   }
   if (currentWeather) {
-    const {
-      main: { temp },
-    } = currentWeather;
     return (
       <View style={styles.container}>
         <View style={styles.main}>

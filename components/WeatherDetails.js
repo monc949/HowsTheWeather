@@ -5,9 +5,13 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const { PRIMARY_COLOR, SECONDARY_COLOR } = colors;
 
-export default function WeatherDetails({ currentWeather }) {
+export default function WeatherDetails({ currentWeather, forecast }) {
   const {
-    main: { feels_like, humidity, temp_min, temp_max },
+    main: { feels_like, humidity },
+  } = currentWeather;
+
+  const {
+    sys: { sunrise, sunset },
   } = currentWeather;
 
   const {
