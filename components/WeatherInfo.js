@@ -5,31 +5,35 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const { PRIMARY_COLOR, SECONDARY_COLOR } = colors;
 
-export default function WeatherInfo({ currentWeather }) {
+export default function WeatherInfo({ weatherData }) {
   const {
-    main: { temp, temp_min, temp_max },
-    weather: [details],
-    name,
-  } = currentWeather;
-  const { icon, main, description } = details;
+    current: {
+      temp,
+      weather: [{ main, description, icon }],
+    },
+    daily: [{
+      temp: {min, max},
+    }]
+  } = weatherData;
+
   const iconUrl = `https://openweathermap.org/img/wn/${icon}@4x.png`;
 
-  let low = Math.round(temp_min);
-  let high = Math.round(temp_max);
+  let low = Math.round(min);
+  let high = Math.round(max);
 
-  const locationIcon = (
-    <MaterialCommunityIcons
-      name="map-marker-outline"
-      size={25}
-      color={PRIMARY_COLOR}
-    />
-  );
+  // const locationIcon = (
+  //   <MaterialCommunityIcons
+  //     name="map-marker-outline"
+  //     size={25}
+  //     color={PRIMARY_COLOR}
+  //   />
+  // );
 
   return (
     <View style={styles.weatherInfo}>
-      <Text style={styles.location}>
+      {/* <Text style={styles.location}>
         {locationIcon} {name}
-      </Text>
+      </Text> */}
 
       <Image style={styles.weatherIcon} source={{ uri: iconUrl }} />
 

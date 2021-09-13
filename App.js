@@ -8,19 +8,17 @@ import WeatherDetails from "./components/WeatherDetails";
 import { colors } from "./utils/index";
 
 const WEATHER_API_KEY = "ed1f0a4494214da7420897696de55b30";
-const BASE_WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather?";
-const FORECAST_WEATHER_URL =
-  "https://api.openweathermap.org/data/2.5/forecast/daily?";
+const BASE_WEATHER_URL = "https://api.openweathermap.org/data/2.5/onecall?";
 
 export default function App() {
   const [errorMessage, setErrorMessage] = useState(null);
-  const [currentWeather, setCurrentWeather] = useState(null);
+  const [weatherData, setWeatherData] = useState(null);
 
   useEffect(() => {
     load();
   }, []);
   async function load() {
-    setCurrentWeather(null);
+    setWeatherData(null);
     setErrorMessage(null);
     try {
       let { status } = await Location.requestForegroundPermissionsAsync();
@@ -33,13 +31,12 @@ export default function App() {
 
       const { latitude, longitude } = location.coords;
       const weatherUrl = `${BASE_WEATHER_URL}lat=${latitude}&lon=${longitude}&units=metric&appid=${WEATHER_API_KEY}`;
-      const forecastUrl = `${FORECAST_WEATHER_URL}lat=${latitude}&lon=${longitude}&cnt=1&appid=${WEATHER_API_KEY}`;
 
       const response = await fetch(weatherUrl);
       const result = await response.json();
 
       if (response.ok) {
-        setCurrentWeather(result);
+        setWeatherData(result);
       } else {
         setErrorMessage(result.message);
       }
@@ -47,14 +44,14 @@ export default function App() {
       setErrorMessage(error.message);
     }
   }
-  if (currentWeather) {
+  if (weatherData) {
     return (
       <View style={styles.container}>
         <View style={styles.main}>
           <ReloadIcon load={load} />
-          <WeatherInfo currentWeather={currentWeather} />
+          <WeatherInfo weatherData={weatherData} />
         </View>
-        <WeatherDetails currentWeather={currentWeather} />
+        <WeatherDetails weatherData={weatherData} />
       </View>
     );
   } else if (errorMessage) {
@@ -79,7 +76,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    // backgroundColor: "#89cff0",
     backgroundColor: colors.BACKGROUND_COLOR,
   },
   main: {
