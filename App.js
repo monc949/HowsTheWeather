@@ -1,4 +1,4 @@
-import { StatusBar } from "expo-status-bar";
+import { setStatusBarStyle, StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
 import * as Location from "expo-location";
@@ -8,17 +8,18 @@ import WeatherDetails from "./components/WeatherDetails";
 import { colors } from "./utils/index";
 
 const WEATHER_API_KEY = "ed1f0a4494214da7420897696de55b30";
-const BASE_WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather?";
+const BASE_WEATHER_URL = "https://api.openweathermap.org/data/2.5/onecall?";
 
 export default function App() {
+  setStatusBarStyle('light')
   const [errorMessage, setErrorMessage] = useState(null);
-  const [currentWeather, setCurrentWeather] = useState(null);
+  const [weatherData, setWeatherData] = useState(null);
 
   useEffect(() => {
     load();
   }, []);
   async function load() {
-    setCurrentWeather(null);
+    setWeatherData(null);
     setErrorMessage(null);
     try {
       let { status } = await Location.requestForegroundPermissionsAsync();
@@ -36,7 +37,7 @@ export default function App() {
       const result = await response.json();
 
       if (response.ok) {
-        setCurrentWeather(result);
+        setWeatherData(result);
       } else {
         setErrorMessage(result.message);
       }
@@ -44,17 +45,14 @@ export default function App() {
       setErrorMessage(error.message);
     }
   }
-  if (currentWeather) {
-    const {
-      main: { temp },
-    } = currentWeather;
+  if (weatherData) {
     return (
       <View style={styles.container}>
         <View style={styles.main}>
-          {/* <ReloadIcon load={load} /> */}
-          <WeatherInfo currentWeather={currentWeather} />
+          <ReloadIcon load={load} />
+          <WeatherInfo weatherData={weatherData} />
         </View>
-        <WeatherDetails currentWeather={currentWeather} />
+        <WeatherDetails weatherData={weatherData} />
       </View>
     );
   } else if (errorMessage) {
@@ -67,7 +65,7 @@ export default function App() {
   } else {
     return (
       <View style={styles.container}>
-        <Text style={styles.loadingText}>Loading...</Text>
+        <Text style={styles.loadingText}>Getting accurate location...</Text>
         <ActivityIndicator size="large" color={colors.SECONDARY_COLOR} />
         <StatusBar style="auto" />
       </View>
@@ -79,6 +77,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
+    backgroundColor: colors.BACKGROUND_COLOR,
   },
   main: {
     justifyContent: "center",
