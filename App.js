@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
 import * as Location from "expo-location";
 import WeatherInfo from "./components/WeatherInfo";
+import ReloadIcon from "./components/ReloadIcon";
 import WeatherDetails from "./components/WeatherDetails";
 import { colors } from "./utils/index";
 
@@ -48,6 +49,7 @@ export default function App() {
     return (
       <View style={styles.container}>
         <View style={styles.main}>
+          <ReloadIcon load={load} />
           <WeatherInfo weatherData={weatherData} />
         </View>
         <WeatherDetails weatherData={weatherData} />
