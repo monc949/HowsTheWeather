@@ -28,12 +28,12 @@ export default function WeatherDetails({ weatherData }) {
   const speedKM = wind_speed * 3.6;
   const speedConverted = speedKM.toFixed(2);
 
-  const wind_direction = degToCompass(wind_deg);
+  const windDirection = degToCompass(wind_deg);
+
+  const precipitationChance = (pop * 100)
+
   const sunriseConverted = timeConverter(sunrise);
   const sunsetConverted = timeConverter(sunset);
-
-  const moonriseConverted = timeConverter(moonrise);
-  const moonsetConverted = timeConverter(moonset);
 
   const moonPhaseIcon = getMoonPhaseIcon(moon_phase);
   const moonPhaseText = getMoonPhaseText(moon_phase);
@@ -69,6 +69,12 @@ export default function WeatherDetails({ weatherData }) {
     var min = a.getMinutes();
     var formattedHour;
     var suffix;
+
+    // Pad leading zeros 
+    var minStr = min.toString();
+    minStr = minStr.padStart(2, "0")
+    
+    // format suffix
     if (hour > 12) {
         formattedHour = hour - 12;
     } else {
@@ -79,7 +85,7 @@ export default function WeatherDetails({ weatherData }) {
     } else {
         suffix = "AM"
     }
-    var time = formattedHour + ':' + min + " " + suffix;
+    var time = formattedHour + ':' + minStr + " " + suffix;
     return time;
   }
 
@@ -175,7 +181,9 @@ export default function WeatherDetails({ weatherData }) {
     return phaseIcon;
   }
 
-// 
+
+
+  // 
   // 
   // Main Component
   return (
@@ -247,7 +255,7 @@ export default function WeatherDetails({ weatherData }) {
             <View style={styles.weatherDetailsItems}>
               <Text style={styles.lightText}>Wind Direction</Text>
               <Text style={styles.textPrimary}>
-                {wind_direction} | {wind_deg} °
+                {windDirection} | {wind_deg} °
               </Text>
             </View>
           </View>
@@ -285,7 +293,7 @@ export default function WeatherDetails({ weatherData }) {
             <View style={styles.weatherDetailsItems}>
               <Text style={styles.lightText}>Precipitation Chance</Text>
               <Text style={styles.textPrimary}>
-                {pop} %
+                {precipitationChance} %
               </Text>
             </View>
           </View>
@@ -364,43 +372,6 @@ export default function WeatherDetails({ weatherData }) {
         </View>
       </View>
 
-      {/* Row */}
-      <View style={styles.weatherDetailsRow}>
-        <View
-          style={{
-            ...styles.weatherDetailsBox,
-            borderRightWidth: 1,
-            borderRightColor: PRIMARY_COLOR,
-          }}
-        >
-          <View style={styles.weatherDetailsRow}>
-            <MaterialCommunityIcons
-              name="moon-full"
-              size={30}
-              color={SECONDARY_COLOR}
-            />
-            <View style={styles.weatherDetailsItems}>
-              <Text style={styles.lightText}>Moonrise</Text>
-              <Text style={styles.textPrimary}>{moonriseConverted}</Text>
-            </View>
-          </View>
-        </View>
-        <View style={styles.weatherDetailsBox}>
-          <View style={styles.weatherDetailsRow}>
-            <MaterialCommunityIcons
-              name="moon-new"
-              size={30}
-              color={SECONDARY_COLOR}
-            />
-            <View style={styles.weatherDetailsItems}>
-              <Text style={styles.lightText}>Moonset</Text>
-              <Text style={styles.textPrimary}>
-                {moonsetConverted}
-              </Text>
-            </View>
-          </View>
-        </View>
-      </View>
 
     </View>
   );

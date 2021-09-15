@@ -1,7 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { colors } from "../utils/index";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const { PRIMARY_COLOR, SECONDARY_COLOR } = colors;
 
@@ -48,20 +47,20 @@ const styles = StyleSheet.create({
   },
   weatherIcon: {
     width: 200,
-    height: 120,
-    padding: 70,
+    height: 100,
+    padding: 40,
   },
   weatherDescription: {
     textTransform: "capitalize",
     color: colors.PRIMARY_COLOR,
   },
   textPrimary: {
-    fontSize: 40,
+    fontSize: 35,
     fontWeight: "bold",
     color: PRIMARY_COLOR,
   },
   textSecondary: {
-    fontSize: 20,
+    fontSize: 25,
     color: SECONDARY_COLOR,
     fontWeight: "500",
     margin: 10,
