@@ -3,7 +3,14 @@
 <p align="center">Weather app built with React-Native and Expo, utilising the <a href="https://openweathermap.org/api" target="_blank">Open Weather Map Api</a></p>
 
 ## Live Link
-(<https://expo.dev/@monc949/hows-the-weather> "Live View")
+<https://expo.dev/@monc949/hows-the-weather>
+
+## Development setup
+<ol>
+  <li>Clone repo</li>
+  <li>Acquire API key <a href= 'https://openweathermap.org/api'>here</a></li>
+  <li>Replace API_KEY with your API key</li>
+</ol>
 
 In the project directory, you can run:
 
